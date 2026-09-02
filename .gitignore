@@ -1,1 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.test-tmp-*/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
 
+# Virtual environments
+.venv/
+venv/
+
+# IDE and operating-system state
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local environment and runtime state
+.env
+*.log
+*.sqlite
+*.sqlite3
+
+# Data and generated artifacts
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/demo/*
+!data/demo/.gitkeep
+model_artifacts/*
+!model_artifacts/.gitkeep
+reports/metrics/*
+!reports/metrics/.gitkeep
+reports/benchmarks/*
+!reports/benchmarks/.gitkeep
+
+# Frontend dependencies and builds
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo

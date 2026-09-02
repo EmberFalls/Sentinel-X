@@ -1,1 +1,6 @@
-
+capture_root: data/demo
+mode: paced
+speed_multiplier: 1.0
+loop: false
+telemetry_interval_ms: 250
+benchmark_telemetry_interval_ms: 1000

@@ -1,1 +1,32 @@
-
+unknown_min_confidence: 0.50
+requirements:
+  DDOS:
+    required_capabilities: [has_packet_timestamps, has_directionality]
+    required_evidence: [target_packets_per_second, unique_sources_for_destination, source_entropy_for_destination, target_concentration]
+    minimum_evidence: {target_window_packets: 10, history_seconds: 1, unique_sources_for_destination: 2}
+    required_true: [history_complete]
+  BOT_OR_C2_LIKE:
+    required_capabilities: [has_packet_timestamps, has_directionality]
+    required_evidence: [connection_count, periodicity_score, destination_recurrence, mean_connection_interval]
+    minimum_evidence: {connection_count: 3, history_seconds: 10}
+    required_true: [history_complete]
+  C2:
+    required_capabilities: [has_packet_timestamps, has_directionality]
+    required_evidence: [connection_count, periodicity_score, destination_recurrence]
+  RECON:
+    required_capabilities: [has_packet_timestamps]
+    required_evidence: [unique_destinations, unique_destination_ports, short_flow_ratio]
+    minimum_evidence: {source_window_packets: 3, history_seconds: 1, source_window_flow_count: 3}
+    required_true: [history_complete]
+  EXFILTRATION:
+    required_capabilities: [has_directionality]
+    required_evidence: [outbound_inbound_ratio_window, outbound_volume_window]
+  DGA:
+    required_capabilities: [has_dns_query_name]
+    required_evidence: [domain_length, character_entropy]
+  DNS_TUNNEL:
+    required_capabilities: [has_dns_query_name]
+    required_evidence: [domain_length, character_entropy, query_frequency]
+  SUSPICIOUS_ENCRYPTED:
+    any_capabilities: [has_tls_metadata, has_quic_metadata]
+    required_evidence: [packet_count, packet_size_mean]

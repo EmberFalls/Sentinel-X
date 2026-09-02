@@ -1,1 +1,19 @@
-
+models:
+  behaviour:
+    enabled: true
+    schema_version: behaviour.v1
+    artifact_path: model_artifacts/behaviour-xgb-v1
+    calibrator_path: null
+    thresholds_path: null
+  dns:
+    enabled: false
+    schema_version: dns.v1
+    artifact_path: null
+    calibrator_path: null
+    thresholds_path: null
+  tls_quic:
+    enabled: false
+    schema_version: tls_quic.v1
+    artifact_path: null
+    calibrator_path: null
+    thresholds_path: null

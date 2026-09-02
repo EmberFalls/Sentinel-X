@@ -1,0 +1,138 @@
+{
+  "conflicting_feature_rows_removed": 18208,
+  "dataset": "CICIDS2017 / MachineLearningCSV",
+  "definition_id": "cicids2017-payload-flow-v1",
+  "duplicate_feature_rows_removed": 220529,
+  "excluded_features": [
+    "Destination Port",
+    "Protocol (absent)",
+    "TCP flags (export ambiguity)",
+    "CIC global packet-size statistics (duplicate-first-packet issue)",
+    "all temporal host/window features (missing provenance)"
+  ],
+  "feature_reference": "https://github.com/ahlashkari/CICFlowMeter/blob/master/src/main/java/cic/cs/unb/ca/jnetpcap/BasicFlow.java",
+  "final_class_counts": {
+    "BENIGN": 333332,
+    "BOT_OR_C2_LIKE": 1229,
+    "DDOS": 127987,
+    "RECON": 1913
+  },
+  "grouping": "Contiguous 512-row blocks within each original source file, retained before cleaning.",
+  "invalid_core_rows_removed": 47,
+  "limitations": [
+    "CSV export has no source IP, destination IP, timestamps or protocol. They are not guessed.",
+    "Whole-capture splits cannot cover all four classes: each attack occurs in one file.",
+    "Row blocks are provenance proxies, not verified time/host/session groups. Evaluation is NOT leakage-free.",
+    "Exact selected-input duplicates and contradictory labels are removed before splitting; test distribution describes unique cleaned vectors.",
+    "Only core flow features train the model. Temporal evidence is measured during runtime, not fabricated in CSV training.",
+    "Training uses completed CIC flows; partial runtime snapshots and unseen captures have unmeasured domain shift.",
+    "Bot maps to BOT_OR_C2_LIKE; it is not a validated C2-beaconing label."
+  ],
+  "mapped_label_counts_before_cleaning": {
+    "BENIGN": 414322,
+    "BOT_OR_C2_LIKE": 1966,
+    "DDOS": 128027,
+    "RECON": 158930
+  },
+  "missing_policy": "Drop invalid counts/duration/payload totals; XGBoost native missing values for optional statistics or undefined zero-duration rates.",
+  "processed_table": "data\\processed\\behaviour-xgb-v1.parquet",
+  "source_label_counts": {
+    "BENIGN": 414322,
+    "Bot": 1966,
+    "DDoS": 128027,
+    "PortScan": 158930
+  },
+  "source_to_class": {
+    "BENIGN": "BENIGN",
+    "Bot": "BOT_OR_C2_LIKE",
+    "DDoS": "DDOS",
+    "PortScan": "RECON"
+  },
+  "sources": [
+    {
+      "bytes": 58316725,
+      "clean_rows": 191024,
+      "filename": "Friday-WorkingHours-Morning.pcap_ISCX.csv",
+      "invalid_core_rows_removed": 9,
+      "nonfinite_numeric_cells": 0,
+      "path": "C:\\Users\\Aaryan\\Downloads\\Friday-WorkingHours-Morning.pcap_ISCX.csv",
+      "sha256": "53a41c24d570ea83b7ac55b2e94df94e7a8216aeb80a2af0246b6bc8bb543000",
+      "source_label_counts": {
+        "BENIGN": 189067,
+        "Bot": 1966
+      },
+      "unsupported_label_rows": 0
+    },
+    {
+      "bytes": 76906168,
+      "clean_rows": 286431,
+      "filename": "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv",
+      "invalid_core_rows_removed": 36,
+      "nonfinite_numeric_cells": 0,
+      "path": "C:\\Users\\Aaryan\\Downloads\\Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv",
+      "sha256": "ca1824c51bfbb7b3c72290a11be04366ba8815878c6a1cc5c44cb1cee269e99b",
+      "source_label_counts": {
+        "BENIGN": 127537,
+        "PortScan": 158930
+      },
+      "unsupported_label_rows": 0
+    },
+    {
+      "bytes": 77123859,
+      "clean_rows": 225743,
+      "filename": "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv",
+      "invalid_core_rows_removed": 2,
+      "nonfinite_numeric_cells": 0,
+      "path": "C:\\Users\\Aaryan\\Downloads\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv",
+      "sha256": "6ff1580f5f81c0ae28a26f7631721018577f5f7c5e0feac28b795fcfe7b411ee",
+      "source_label_counts": {
+        "BENIGN": 97718,
+        "DDoS": 128027
+      },
+      "unsupported_label_rows": 0
+    }
+  ],
+  "split_seed": 42,
+  "splits": {
+    "calibration": {
+      "classes": {
+        "BENIGN": 31873,
+        "BOT_OR_C2_LIKE": 112,
+        "DDOS": 12261,
+        "RECON": 236
+      },
+      "groups": 137,
+      "rows": 44482
+    },
+    "test": {
+      "classes": {
+        "BENIGN": 28217,
+        "BOT_OR_C2_LIKE": 126,
+        "DDOS": 16786,
+        "RECON": 200
+      },
+      "groups": 137,
+      "rows": 45329
+    },
+    "train": {
+      "classes": {
+        "BENIGN": 238632,
+        "BOT_OR_C2_LIKE": 932,
+        "DDOS": 87656,
+        "RECON": 1343
+      },
+      "groups": 959,
+      "rows": 328563
+    },
+    "validation": {
+      "classes": {
+        "BENIGN": 34610,
+        "BOT_OR_C2_LIKE": 59,
+        "DDOS": 11284,
+        "RECON": 134
+      },
+      "groups": 137,
+      "rows": 46087
+    }
+  }
+}

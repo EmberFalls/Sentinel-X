@@ -1,1 +1,16 @@
-
+project_name: Custodian
+environment: prototype
+log_level: INFO
+flow_idle_timeout_seconds: 60
+flow_active_timeout_seconds: 120
+max_active_flows: 50000
+max_temporal_events: 200000
+max_alerts: 1000
+snapshot_interval_seconds: 1.0
+snapshot_min_packets: 2
+inference_batch_size: 32
+inference_batch_timeout_ms: 50
+temporal_windows_seconds:
+  - 10
+  - 60
+  - 300
